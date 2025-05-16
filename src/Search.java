@@ -1,4 +1,5 @@
-package PACKAGE_NAME;
+import java.util.*;
 
-public class Search {
+public interface Search<V> {
+    List<V> getPath(V start, V end);
 }

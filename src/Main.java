@@ -1,15 +1,31 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        WeightedGraph<String> graph = new WeightedGraph<>();
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+        graph.addVertex("Astana");
+        graph.addVertex("Almaty");
+        graph.addVertex("Shymkent");
+        graph.addVertex("Aktobe");
+        graph.addVertex("Karaganda");
+        graph.addVertex("Pavlodar");
+        graph.addVertex("Kostanay");
+        graph.addVertex("Taraz");
+
+        graph.addEdge("Astana", "Almaty", 1);
+        graph.addEdge("Almaty", "Shymkent", 3);
+        graph.addEdge("Astana", "Shymkent", 10);
+        graph.addEdge("Shymkent", "Aktobe", 2);
+        graph.addEdge("Astana", "Karaganda", 2);
+        graph.addEdge("Karaganda", "Pavlodar", 4);
+        graph.addEdge("Pavlodar", "Kostanay", 5);
+        graph.addEdge("Kostanay", "Aktobe", 3);
+        graph.addEdge("Almaty", "Taraz", 2);
+        graph.addEdge("Taraz", "Shymkent", 1);
+
+        Search<String> bfs = new BreadthFirstSearch<>(graph);
+        Search<String> dijkstra = new DijkstraSearch<>(graph);
+
+        System.out.println("BFS Path Astana -> Aktobe: " + bfs.getPath("Astana", "Aktobe"));
+        System.out.println("Dijkstra Path Astana -> Aktobe: " + dijkstra.getPath("Astana", "Aktobe"));
     }
 }
